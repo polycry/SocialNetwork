@@ -22,23 +22,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-//        ListView lv = findViewById(R.id.list_feed);
-/*
-        posts.add(new Post("Geier", "I bims", new Date(4, 9, 1999)));
-
-        // Create an ArrayAdapter from List
-        final ArrayAdapter<Post> arrayAdapter = new ArrayAdapter<Post>
-                (this, android.R.layout., posts);
-
-        // DataBind ListView with items from ArrayAdapter
-        lv.setAdapter(arrayAdapter);
-*/
         Intent i = new Intent(this, FeedActivity.class);
         startActivity(i);
-
-
-
 
     }
 }

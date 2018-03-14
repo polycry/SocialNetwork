@@ -29,19 +29,20 @@ public class PostAdapter extends ArrayAdapter<Post> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
+    public View getView(int position, View contentView, ViewGroup viewGroup) {
         Post post = getItem(position);
         ViewHolder viewHolder;
-        if (convertView == null) {
+        if (contentView == null) {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.feed_item, viewGroup, false);
-            viewHolder.post = convertView.findViewById(R.id.txt_post);
-            viewHolder.poster = convertView.findViewById(R.id.txt_poster);
-            //viewHolder.date= convertView.findViewById(R.id.txt_date);
-            convertView.setTag(viewHolder);
+            contentView = inflater.inflate(R.layout.list_feed, viewGroup, false);
+            viewHolder.post = contentView.findViewById(R.id.txt_post);
+            viewHolder.poster = contentView.findViewById(R.id.txt_poster);
+           // viewHolder.date = contentView.findViewById(R.id.txt_date); //noidea
+
+            contentView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (ViewHolder) contentView.getTag();
         }
 
         viewHolder.poster.setText(post.getPoster());
@@ -55,7 +56,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         }
 */
 
-        return convertView;
+        return contentView;
     }
 
 
