@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -21,7 +23,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
     private static class ViewHolder {
         public TextView poster;
         public TextView post;
-        public Date date;
+        public TextView date;
     }
 
     public PostAdapter(@NonNull Context context, ArrayList<Post> posts) {
@@ -38,7 +40,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
             contentView = inflater.inflate(R.layout.list_feed, viewGroup, false);
             viewHolder.post = contentView.findViewById(R.id.txt_post);
             viewHolder.poster = contentView.findViewById(R.id.txt_poster);
-           // viewHolder.date = contentView.findViewById(R.id.txt_date); //noidea
+            viewHolder.date = contentView.findViewById(R.id.txt_date); //noidea
 
             contentView.setTag(viewHolder);
         } else {
@@ -47,6 +49,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         viewHolder.poster.setText(post.getPoster());
         viewHolder.post.setText(post.getPost());
+        viewHolder.date.setText(post.getDate());
 
         /*
         if (Double.parseDouble(temperatur.getTemperatur()) > 0) {

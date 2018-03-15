@@ -21,9 +21,9 @@ public class FeedActivity extends AppCompatActivity {
         ListView lv = findViewById(R.id.list_feed);
         String[] array = {"Shop1", "Shop2", "Shop3"};
         ArrayList<Post> lst = new ArrayList<Post>();
-        lst.add(new Post("Geier", "I bims", "04/09/1999"));
-        lst.add(new Post("Feg", "asdasdas", "04/09/1999"));
-        lst.add(new Post("Jonas", "asdasdsadsad", "04/09/1999"));
+        lst.add(new Post("Geier", "I bims", new Date(4,9,1999).toString()));
+        lst.add(new Post("Feg", "asdasdas", new Date(4,9,1999).toString()));
+        lst.add(new Post("Jonas", "asdasdsadsad", new Date(4,9,1999).toString()));
 
 
         PostAdapter pa = new PostAdapter(this, lst);
