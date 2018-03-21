@@ -40,7 +40,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
             contentView = inflater.inflate(R.layout.list_feed, viewGroup, false);
             viewHolder.post = contentView.findViewById(R.id.txt_post);
             viewHolder.poster = contentView.findViewById(R.id.txt_poster);
-            viewHolder.date = contentView.findViewById(R.id.txt_date); //noidea
+            viewHolder.date = contentView.findViewById(R.id.txt_date);
 
             contentView.setTag(viewHolder);
         } else {
@@ -49,15 +49,10 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         viewHolder.poster.setText(post.getPoster());
         viewHolder.post.setText(post.getPost());
-        viewHolder.date.setText(post.getDate());
 
-        /*
-        if (Double.parseDouble(temperatur.getTemperatur()) > 0) {
-            viewHolder.temperatur_icon.setImageResource(R.drawable.temp_p);
-        } else {
-            viewHolder.temperatur_icon.setImageResource(R.drawable.temp_n);
-        }
-*/
+        Date date_editn = post.getDate();
+
+        viewHolder.date.setText(android.text.format.DateFormat.format("dd/MM/yyyy hh:mm", date_editn));
 
         return contentView;
     }

@@ -10,9 +10,9 @@ public class Post {
 
     private String post = null;
     private String poster = null;
-    private String date = null;
+    private Date date = null;
 
-    public Post(String poster, String post, String date) {
+    public Post(String poster, String post, Date date) {
         this.setPoster(poster);
         this.setPost(post);
         this.setDate(date);
@@ -37,11 +37,11 @@ public class Post {
         this.poster = poster;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }
