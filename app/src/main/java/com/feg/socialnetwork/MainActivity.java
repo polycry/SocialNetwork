@@ -3,13 +3,9 @@ package com.feg.socialnetwork;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,5 +21,14 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, FeedActivity.class);
         startActivity(i);
 
+        HashMap<String, String> params = new HashMap<>();
+        params.put("username", "test");
+        params.put("password", "ibimsdaspasswort");
+        params.put("email", "sadsadsa@lol.com");
+        PerformNetworkRequest nr = new PerformNetworkRequest(API.URL_REGISTER, params, API.CODE_POST_REQUEST, getApplicationContext());
+        nr.execute();
+
     }
+
+
 }

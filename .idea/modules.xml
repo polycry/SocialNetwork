@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SocialNetwork.iml" filepath="$PROJECT_DIR$/SocialNetwork.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SocialNetwork.iml" filepath="$PROJECT_DIR$/.idea/SocialNetwork.iml" />
+      <module fileurl="file://Q:\AndroidProgrammierung\SocialNetwork\SocialNetwork\SocialNetwork.iml" filepath="Q:\AndroidProgrammierung\SocialNetwork\SocialNetwork\SocialNetwork.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
