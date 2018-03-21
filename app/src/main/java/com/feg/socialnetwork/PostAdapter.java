@@ -52,7 +52,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         Date date_editn = post.getDate();
 
-        viewHolder.date.setText(android.text.format.DateFormat.format("dd/MM/yyyy hh:mm", date_editn));
+        viewHolder.date.setText("am " + android.text.format.DateFormat.format("dd/MM - hh:mm", date_editn));
 
         return contentView;
     }

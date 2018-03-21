@@ -3,6 +3,9 @@ package com.feg.socialnetwork;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +31,14 @@ public class MainActivity extends AppCompatActivity {
         PerformNetworkRequest nr = new PerformNetworkRequest(API.URL_REGISTER, params, API.CODE_POST_REQUEST, getApplicationContext());
         nr.execute();
 
+
+
+        Button login = findViewById(R.id.login);
+        login.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), FeedActivity.class);
+                startActivity(i);
+            }
+        });
     }
-
-
 }
