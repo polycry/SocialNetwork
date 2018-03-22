@@ -1,5 +1,6 @@
 package com.feg.socialnetwork;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
@@ -13,13 +14,16 @@ public class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
     private HashMap<String, String> params;
     private int requestCode;
 
-    Context context;
+    MainActivity activity;
+    // declare here other activities
 
-    public PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode, Context context) {
+    public PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode, Activity activity) {
         this.url = url;
         this.params = params;
         this.requestCode = requestCode;
-        this.context = context;
+        if (url.equals(API.URL_LOGIN)) {
+            this.activity = (MainActivity) activity;
+        } // else if blabla donn ondre activity de oben deklariert isch initialisieren
     }
 
     @Override
@@ -31,10 +35,9 @@ public class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         try {
+            // do a nor nomol obfrogen welche ausgführt worden isch!! not implemented yet yolo
             JSONObject object = new JSONObject(s);
-            if (!object.getBoolean("error")) {
-                Toast.makeText(context, object.getString("errorcode"), Toast.LENGTH_SHORT).show();
-            }
+            activity.login(object);
         } catch (JSONException e) {
             e.printStackTrace();
         }
