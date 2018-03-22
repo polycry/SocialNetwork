@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         PerformNetworkRequest nr = new PerformNetworkRequest(API.URL_REGISTER, params, API.CODE_POST_REQUEST, getApplicationContext());
         nr.execute();
 */
+
+        Intent i = new Intent(getBaseContext(), FeedActivity.class);
+        startActivity(i);
         login = findViewById(R.id.login);
         login.setOnClickListener(this);
     }
