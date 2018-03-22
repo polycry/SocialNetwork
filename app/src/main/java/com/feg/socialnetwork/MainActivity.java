@@ -37,8 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nr.execute();
 */
 
-        Intent i = new Intent(getBaseContext(), FeedActivity.class);
-        startActivity(i);
+
         login = findViewById(R.id.login);
         login.setOnClickListener(this);
     }
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             logged_in = true;
             Intent i = new Intent(getBaseContext(), FeedActivity.class);
             startActivity(i);
+            this.finish(); //dispose activity
 
         } else if (errorcode == 1) {
             Toast.makeText(getApplicationContext(), "Falsches Passwort", Toast.LENGTH_LONG).show();
