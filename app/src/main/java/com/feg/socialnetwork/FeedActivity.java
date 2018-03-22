@@ -20,9 +20,10 @@ public class FeedActivity extends AppCompatActivity {
 
         ArrayList<Post> lst = new ArrayList<Post>();
         lst.add(new Post("Geier", "I bimsdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssfsdfsdfdsffsddsfdsfsfsdfsfsefsfefsefeeffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", new Date(4, 9, 1999)));
-        lst.add(new Post("Feg", "asdasdas", new Date(4, 9, 1999)));
-        lst.add(new Post("Jonas", "asdasdsadsad", new Date(4, 9, 1999)));
-
+        lst.add(new Post("Feg", "asdasdas", new Date(1999, 9, 4)));
+        lst.add(new Post("Jonas", "asdasdsadsad", new Date(1999, 12, 3)));
+        lst.add(new Post("Jonadasdadaas", "asdasdasd", new Date(1999, 12, 2)));
+        lst.add(new Post("Jonsdasdasdaas", "asdasdsaasdasdasdasdasdadadsad", new Date(1999, 9, 1)));
 
         PostAdapter pa = new PostAdapter(this, lst);
 

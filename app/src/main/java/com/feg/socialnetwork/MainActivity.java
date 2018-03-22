@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 PerformNetworkRequest nr = new PerformNetworkRequest(API.URL_LOGIN, params, API.CODE_POST_REQUEST, this);
                 nr.execute();
             } else {
-                Toast.makeText(getApplicationContext(),"Fülle bitte beide Felder aus",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Fülle bitte beide Felder aus", Toast.LENGTH_LONG).show();
             }
 
 
