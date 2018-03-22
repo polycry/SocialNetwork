@@ -50,8 +50,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (errorcode == 0) {
             Toast.makeText(getApplicationContext(), "Anmeldung erfolgreich!", Toast.LENGTH_LONG).show();
             logged_in = true;
+            Intent i = new Intent(getBaseContext(), FeedActivity.class);
+            startActivity(i);
+
         } else if (errorcode == 1) {
-            Toast.makeText(getApplicationContext(), "Passwort inkorrekt", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Falsches Passwort", Toast.LENGTH_LONG).show();
         } else if (errorcode == 2) {
             Toast.makeText(getApplicationContext(), "Benutzer existiert nicht", Toast.LENGTH_LONG).show();
         } else {
@@ -69,14 +72,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String user = username.getText().toString();
             String pass = password.getText().toString();
 
+            if (!user.isEmpty() && !pass.isEmpty()) {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("username", user);
+                params.put("password", pass);
+                PerformNetworkRequest nr = new PerformNetworkRequest(API.URL_LOGIN, params, API.CODE_POST_REQUEST, this);
+                nr.execute();
+            } else {
+                Toast.makeText(getApplicationContext(),"Fülle bitte beide Felder aus",Toast.LENGTH_LONG).show();
+            }
 
-            HashMap<String, String> params = new HashMap<>();
-            params.put("username", user);
-            params.put("password", pass);
-            PerformNetworkRequest nr = new PerformNetworkRequest(API.URL_LOGIN, params, API.CODE_POST_REQUEST, this);
-            nr.execute();
-            //Intent i = new Intent(getBaseContext(), FeedActivity.class);
-            //startActivity(i);
+
         }
     }
 }
