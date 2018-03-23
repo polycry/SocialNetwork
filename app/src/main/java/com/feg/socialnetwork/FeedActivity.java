@@ -3,6 +3,7 @@ package com.feg.socialnetwork;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+import android.widget.TabHost;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +33,28 @@ public class FeedActivity extends AppCompatActivity {
         PostAdapter pa = new PostAdapter(this, lst);
 
         lv.setAdapter(pa);
+
+
+        TabHost host = (TabHost)findViewById(R.id.tabhost);
+        host.setup();
+
+
+        TabHost.TabSpec spec = host.newTabSpec("Tab One");
+        spec.setContent(R.id.tab1);
+        spec.setIndicator("Tab One");
+        host.addTab(spec);
+
+        //Tab 2
+        spec = host.newTabSpec("Tab Two");
+        spec.setContent(R.id.tab2);
+        spec.setIndicator("Tab Two");
+        host.addTab(spec);
+
+        //Tab 3
+        spec = host.newTabSpec("Tab Three");
+        spec.setContent(R.id.tab3);
+        spec.setIndicator("Tab Three");
+        host.addTab(spec);
 
     }
 
