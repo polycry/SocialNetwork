@@ -17,7 +17,8 @@ public class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
     private int requestCode;
 
     // declare here other activities
-    MainActivity activity;
+    MainActivity main_activity;
+    FeedActivity feed_activity;
 
 
     public PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode, Activity activity) {
@@ -25,8 +26,10 @@ public class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
         this.params = params;
         this.requestCode = requestCode;
         if (url.equals(API.URL_LOGIN)) {
-            this.activity = (MainActivity) activity;
-        } // else if blabla donn ondre activity de oben deklariert isch initialisieren
+            this.main_activity = (MainActivity) activity;
+        } else if (url.equals(API.URL_GETPOSTS) || url.equals(API.URL_GETPOSTS_ONLY_USER)) {
+            this.feed_activity = (FeedActivity) activity;
+        }
     }
 
     @Override
@@ -40,7 +43,7 @@ public class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
         if (url.equals(API.URL_LOGIN)) {
             try {
                 JSONObject object = new JSONObject(s);
-                activity.login(object);
+                main_activity.login(object);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -48,7 +48,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         }
 
         viewHolder.poster.setText(post.getPoster());
-        viewHolder.post.setText(post.getPost());
+        viewHolder.post.setText(post.getContent());
 
         Date date_editn = post.getDate();
 

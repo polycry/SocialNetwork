@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent i = new Intent(getBaseContext(), FeedActivity.class);
             startActivity(i);
             this.finish(); //dispose activity
-
         } else if (errorcode == 1) {
             Toast.makeText(getApplicationContext(), "Falsches Passwort", Toast.LENGTH_LONG).show();
         } else if (errorcode == 2) {

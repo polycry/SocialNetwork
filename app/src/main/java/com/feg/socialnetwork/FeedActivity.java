@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -30,4 +34,26 @@ public class FeedActivity extends AppCompatActivity {
         lv.setAdapter(pa);
 
     }
+
+    public void refreshFeed(JSONObject jo) {
+        int errorcode = -1;
+        try {
+            errorcode = jo.getInt("errorcode");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (errorcode == 0) {
+            JSONArray arr = null;
+            try {
+                arr = new JSONArray("posts");
+                for (int i = 0; i < arr.length(); i++) {
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            
+        }
+    }
+
 }
