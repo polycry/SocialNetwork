@@ -14,24 +14,17 @@ import java.util.Date;
 
 public class FeedActivity extends AppCompatActivity {
 
+    private PostAdapter pa;
+
+    private ListView lv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         setContentView(R.layout.activity_feed);
-        ListView lv = findViewById(R.id.list_feed);
-
-        ArrayList<Post> lst = new ArrayList<Post>();
-        lst.add(new Post("Geier", "I bimsdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssfsdfsdfdsffsddsfdsfsfsdfsfsefsfefsefeeffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", new Date(4, 9, 1999)));
-        lst.add(new Post("Feg", "asdasdas", new Date(1999, 9, 4)));
-        lst.add(new Post("Jonas", "asdasdsadsad", new Date(1999, 12, 3)));
-        lst.add(new Post("Jonadasdadaas", "asdasdasd", new Date(1999, 12, 2)));
-        lst.add(new Post("Jonsdasdasdaas", "asdasdsaasdasdasdasdasdadadsad", new Date(1999, 9, 1)));
-
-        PostAdapter pa = new PostAdapter(this, lst);
-
+        lv = findViewById(R.id.list_feed);
+        ArrayList<Post> posts = new ArrayList<Post>();
+        pa = new PostAdapter(this, posts);
         lv.setAdapter(pa);
 
 
@@ -60,6 +53,7 @@ public class FeedActivity extends AppCompatActivity {
 
     public void refreshFeed(JSONObject jo) {
         int errorcode = -1;
+        ArrayList<Post> posts = new ArrayList();
         try {
             errorcode = jo.getInt("errorcode");
         } catch (JSONException e) {
@@ -70,13 +64,17 @@ public class FeedActivity extends AppCompatActivity {
             try {
                 arr = new JSONArray("posts");
                 for (int i = 0; i < arr.length(); i++) {
-
+                    posts.add(Post.formPost(arr.getJSONObject(i)));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            
         }
+        pa.clear();
+        for (Post p : posts) {
+            pa.add(p);
+        }
+        pa.notifyDataSetChanged();
     }
 
 }

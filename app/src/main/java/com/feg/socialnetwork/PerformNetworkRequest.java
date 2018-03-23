@@ -40,13 +40,15 @@ public class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        if (url.equals(API.URL_LOGIN)) {
-            try {
-                JSONObject object = new JSONObject(s);
+        try {
+        JSONObject object = new JSONObject(s);
+            if (url.equals(API.URL_LOGIN)) {
                 main_activity.login(object);
-            } catch (JSONException e) {
-                e.printStackTrace();
+            } else if (url.equals(API.URL_GETPOSTS) || url.equals(API.URL_GETPOSTS_ONLY_USER)) {
+                feed_activity.refreshFeed(object);
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

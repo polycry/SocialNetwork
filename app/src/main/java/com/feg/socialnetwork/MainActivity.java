@@ -28,15 +28,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-       /* HashMap<String, String> params = new HashMap<>();
+        /*
+        HashMap<String, String> params = new HashMap<>();
         params.put("username", "feggg");
         params.put("password", "geggg");
         params.put("email", "sadsadsggggega@lol.com");
         PerformNetworkRequest nr = new PerformNetworkRequest(API.URL_REGISTER, params, API.CODE_POST_REQUEST, getApplicationContext());
         nr.execute();
-*/
-
+        */
 
         login = findViewById(R.id.login);
         login.setOnClickListener(this);
