@@ -13,13 +13,13 @@ public class Post {
 
     private String content = null;
     private String poster = null;
-    private Date date = null;
+    private String date = null;
 
     public Post() {
 
     }
 
-    public Post(String poster, String content, Date date) {
+    public Post(String poster, String content, String date) {
         this.setPoster(poster);
         this.setContent(content);
         this.setDate(date);
@@ -29,7 +29,7 @@ public class Post {
         Post p = new Post();
         try {
             p.setPoster(jo.getString("username"));
-            p.setDate(new Date(jo.getString("date")));
+            p.setDate(jo.getString("creationdate"));
             p.setContent(jo.getString("content"));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -54,11 +54,11 @@ public class Post {
         this.poster = poster;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }
