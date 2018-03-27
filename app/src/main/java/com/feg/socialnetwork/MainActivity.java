@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ArrayList<Post> posts;
     private Button login;
-    private Boolean logged_in;
+    private String logged_in_user = null;
 
 
     @Override
@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (errorcode == 0) {
             Toast.makeText(getApplicationContext(), "Anmeldung erfolgreich!", Toast.LENGTH_LONG).show();
-            logged_in = true;
             Intent i = new Intent(getBaseContext(), FeedActivity.class);
+            i.putExtra("username", logged_in_user);
             startActivity(i);
             this.finish(); //dispose activity
         } else if (errorcode == 1) {
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 params.put("password", pass);
                 PerformNetworkRequest nr = new PerformNetworkRequest(API.URL_LOGIN, params, API.CODE_POST_REQUEST, this);
                 nr.execute();
+                logged_in_user = user;
             } else {
                 Toast.makeText(getApplicationContext(), "Fülle bitte beide Felder aus", Toast.LENGTH_LONG).show();
             }

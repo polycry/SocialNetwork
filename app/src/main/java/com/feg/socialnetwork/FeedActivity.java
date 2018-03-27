@@ -1,12 +1,16 @@
 package com.feg.socialnetwork;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.ViewParent;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,15 +22,18 @@ import java.util.HashMap;
 
 public class FeedActivity extends AppCompatActivity {
 
-    private PostAdapter pa;
     private SectionsPageAdapter spa;
     private ListView lv;
+
+    private String logged_in_user = "";
 
     private FeedFragment followFeed;
     private FeedFragment globalFeed;
     private FeedFragment userFeed;
 
     private ViewPager viewPager;
+
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +44,19 @@ public class FeedActivity extends AppCompatActivity {
         //pa = new PostAdapter(this, posts);
         //lv.setAdapter(pa);
 
+        Bundle b = getIntent().getExtras();
+        if (b != null) {
+            logged_in_user = b.getString("username");
+        }
+
         spa = new SectionsPageAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(viewPager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        /*viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(onTabSelectedListener(viewPager));*/
 
         /*HashMap<String, String> params = new HashMap<>();
         params.put("username", "poly");
@@ -50,41 +64,47 @@ public class FeedActivity extends AppCompatActivity {
         nr.execute();*/
     }
 
+    /*private TabLayout.OnTabSelectedListener onTabSelectedListener(final ViewPager viewPager) {
+
+        return new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Fragment f = spa.getItem(tab.getPosition());
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        };
+    }*/
+
     private void setupViewPager(ViewPager viewPager) {
         followFeed = new FeedFragment();
+        followFeed.setTag(FeedFragment.FOLLOW_FEED);
+        followFeed.setUser(logged_in_user);
+
         globalFeed = new FeedFragment();
+        globalFeed.setTag(FeedFragment.GLOBAL_FEED);
+        globalFeed.setUser(logged_in_user);
+
         userFeed = new FeedFragment();
+        userFeed.setTag(FeedFragment.USER_FEED);
+        userFeed.setUser(logged_in_user);
+
         spa.addFragment(followFeed, "Follower");
         spa.addFragment(globalFeed, "Global");
         spa.addFragment(userFeed, "User");
         viewPager.setAdapter(spa);
     }
 
-    public void refreshFeed(JSONObject jo) {
-        int errorcode = -1;
-        ArrayList<Post> posts = new ArrayList();
-        try {
-            errorcode = jo.getInt("errorcode");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if (errorcode == 0) {
-            JSONArray arr = null;
-            try {
-                arr = jo.getJSONArray("posts");
-                for (int i = 0; i < arr.length(); i++) {
-                    posts.add(Post.formPost(arr.getJSONObject(i)));
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        pa.clear();
-        for (Post p : posts) {
-            pa.add(p);
-        }
-        pa.notifyDataSetChanged();
-    }
+
 
 }
 
