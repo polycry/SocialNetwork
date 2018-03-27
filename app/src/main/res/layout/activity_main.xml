@@ -49,6 +49,18 @@
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="360dp" />
 
+    <Button
+        android:id="@+id/register"
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Register"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="360dp" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"

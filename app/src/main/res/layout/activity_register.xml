@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.feg.socialnetwork.RegisterActivity">
+
+    <EditText
+        android:id="@+id/txt_email"
+        android:layout_width="200dp"
+        android:layout_height="37dp"
+        android:layout_alignBottom="@+id/txt_username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_x="123dp"
+        android:layout_y="162dp"
+        android:hint="email" />
+
+    <EditText
+        android:id="@+id/txt_username"
+        android:layout_width="200dp"
+        android:layout_height="37dp"
+        android:layout_alignLeft="@+id/txt_email"
+        android:layout_alignStart="@+id/txt_email"
+        android:layout_centerVertical="true"
+        android:layout_x="111dp"
+        android:layout_y="313dp"
+        android:hint="@string/username" />
+
+    <EditText
+        android:id="@+id/txt_password"
+        android:layout_width="200dp"
+        android:layout_height="37dp"
+        android:layout_alignLeft="@+id/txt_username"
+        android:layout_alignStart="@+id/txt_username"
+        android:layout_below="@+id/txt_username"
+        android:layout_marginTop="15dp"
+        android:layout_x="110dp"
+        android:layout_y="265dp"
+        android:hint="passwort" />
+
+    <Button
+        android:id="@+id/register_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txt_password"
+        android:layout_alignLeft="@+id/txt_password"
+        android:layout_alignRight="@+id/txt_password"
+        android:layout_alignStart="@+id/txt_password"
+        android:layout_below="@+id/txt_password"
+        android:layout_marginTop="21dp"
+        android:text="Register" />
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/txt_email"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="49dp"
+        app:srcCompat="@mipmap/snlogo" />
+
+</RelativeLayout>
