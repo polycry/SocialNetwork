@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ArrayList<Post> posts;
     private Button login;
+    private Button register;
     private String logged_in_user = null;
 
 
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         login = findViewById(R.id.login);
         login.setOnClickListener(this);
+        register=findViewById(R.id.register);
+        register.setOnClickListener(this);
+
     }
 
     public void login(JSONObject jo) {
@@ -86,5 +90,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         }
+
+        if (v==register){
+            Intent i = new Intent(getBaseContext(), RegisterActivity.class);
+            startActivity(i);
+        }
+
     }
 }
