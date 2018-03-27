@@ -19,14 +19,14 @@ public class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
     // declare here other activities
     MainActivity main_activity;
     FeedFragment feed_fragment;
-    RegisterActivity register_Activity;
+    RegisterActivity register_activity;
 
 
     public PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode, RegisterActivity activity) {
         this.url = url;
         this.params = params;
         this.requestCode = requestCode;
-        this.register_Activity = (RegisterActivity) activity;
+        this.register_activity = (RegisterActivity) activity;
     }
 
 
@@ -59,7 +59,7 @@ public class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
             } else if (url.equals(API.URL_GETPOSTS) || url.equals(API.URL_GETPOSTS_ONLY_USER)) {
                 feed_fragment.refreshFeed(object);
             } else if (url.equals(API.URL_REGISTER)) {
-                register_Activity.register(object);
+                register_activity.register(object);
             }
         } catch (JSONException e) {
             e.printStackTrace();
