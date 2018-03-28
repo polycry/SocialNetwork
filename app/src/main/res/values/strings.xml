@@ -17,7 +17,6 @@
     <string name="password">password</string>
     <string name="username">username</string>
     <string name="title_activity_feed_new">FeedActivityNew</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_search">Suche</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="title_activity_main2">Main2Activity</string>
 </resources>

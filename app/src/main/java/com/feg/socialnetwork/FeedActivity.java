@@ -6,7 +6,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.ViewParent;
 import android.widget.ListView;
 import android.widget.TabHost;
@@ -20,10 +24,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class FeedActivity extends AppCompatActivity {
+public class FeedActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private SectionsPageAdapter spa;
     private ListView lv;
+    private SearchView sv;
 
     private String logged_in_user = "";
 
@@ -39,10 +44,6 @@ public class FeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
-        //lv = findViewById(R.id.list_feed);
-        //ArrayList<Post> posts = new ArrayList<Post>();
-        //pa = new PostAdapter(this, posts);
-        //lv.setAdapter(pa);
 
         Bundle b = getIntent().getExtras();
         if (b != null) {
@@ -62,6 +63,16 @@ public class FeedActivity extends AppCompatActivity {
         params.put("username", "poly");
         PerformNetworkRequest nr = new PerformNetworkRequest(API.URL_GETPOSTS_ONLY_USER, params, API.CODE_POST_REQUEST, this);
         nr.execute();*/
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_feed_search, menu);
+
+        sv = (SearchView) menu.findItem(R.id.item_search).getActionView();
+        sv.setOnQueryTextListener(this);
+        return super.onCreateOptionsMenu(menu);
     }
 
     /*private TabLayout.OnTabSelectedListener onTabSelectedListener(final ViewPager viewPager) {
@@ -105,7 +116,15 @@ public class FeedActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
 
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
 }
 
 /*
