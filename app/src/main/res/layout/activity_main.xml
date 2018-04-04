@@ -14,10 +14,11 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/txt_password"
         android:layout_centerHorizontal="true"
+        android:backgroundTint="@android:color/black"
         android:ems="10"
         android:hint="@string/username"
-        android:inputType="textPersonName"
 
+        android:inputType="textPersonName"
         android:textColorLink="@android:color/darker_gray"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="241dp" />
@@ -30,6 +31,7 @@
         android:layout_alignLeft="@+id/login"
         android:layout_alignStart="@+id/login"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="@android:color/black"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"

@@ -47,10 +47,12 @@
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
         android:clickable="true"
+        app:backgroundTint="@android:color/white"
         app:layout_anchor="@+id/container"
         app:layout_anchorGravity="right|bottom"
-        app:srcCompat="@android:drawable/btn_plus"
-        tools:layout_editor_absoluteY="490dp" />
+        app:srcCompat="@drawable/addbutton"
+        tools:layout_editor_absoluteY="490dp"
+        app:elevation="15dp"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/container"

@@ -10,13 +10,10 @@
         android:id="@+id/post"
         style="@android:style/Widget.DeviceDefault.Button"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="32dp"
-        android:layout_marginLeft="63dp"
-        android:layout_marginStart="63dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="104dp"
         android:text="Senden" />
 
     <TextView
@@ -26,12 +23,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="59dp"
         android:text="Erstelle einen neuen Post"
-        android:textSize="30dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="30dp" />
 
     <EditText
         android:id="@+id/post_content"
@@ -39,9 +35,8 @@
         android:layout_height="200dp"
         android:layout_above="@+id/post"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="92dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="@android:color/black"
         android:ems="10"
         android:hint="Erstelle einen Beitrag..."
         android:inputType="textPersonName" />
