@@ -24,7 +24,7 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-            <SearchView
+            <android.support.v7.widget.SearchView
                 android:id="@+id/search_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

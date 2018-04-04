@@ -28,7 +28,6 @@ public class FeedFragment extends Fragment {
     public static final int USER_FEED = 3;
 
     private int tag = 0;
-    private String user = "";
 
     private ListView lv;
     private PostAdapter pa;
@@ -48,10 +47,6 @@ public class FeedFragment extends Fragment {
 
     public void setTag(int tag) {
         this.tag = tag;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
     }
 
     public void refreshFeed(JSONObject jo) {
@@ -80,25 +75,27 @@ public class FeedFragment extends Fragment {
         pa.notifyDataSetChanged();
     }
 
-    @Override
+    public void reloadListView(String query) {
+        HashMap<String, String> params = new HashMap<>();
+        PerformNetworkRequest nr = null;
+        params.put("username", query);
+        if (tag == FOLLOW_FEED) {
+            nr = new PerformNetworkRequest(API.URL_GETPOSTS, params, API.CODE_POST_REQUEST, this);
+        } else if (tag == GLOBAL_FEED) {
+            nr = new PerformNetworkRequest(API.URL_GETPOSTS, params, API.CODE_POST_REQUEST, this);
+        } else if (tag == USER_FEED) {
+            nr = new PerformNetworkRequest(API.URL_GETPOSTS_ONLY_USER, params, API.CODE_POST_REQUEST, this);
+        }
+        nr.execute();
+    }
+
+    /*@Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            HashMap<String, String> params = new HashMap<>();
-            PerformNetworkRequest nr = null;
-            if (tag == FOLLOW_FEED) {
-                params.put("username", user);
-                nr = new PerformNetworkRequest(API.URL_GETPOSTS, params, API.CODE_POST_REQUEST, this);
-            } else if (tag == GLOBAL_FEED) {
-                params.put("username", "");
-                nr = new PerformNetworkRequest(API.URL_GETPOSTS, params, API.CODE_POST_REQUEST, this);
-            } else if (tag == USER_FEED) {
-                params.put("username", ""); // replace with Search Text - till now not implemented
-                nr = new PerformNetworkRequest(API.URL_GETPOSTS_ONLY_USER, params, API.CODE_POST_REQUEST, this);
-            }
-            nr.execute();
+
         }
-    }
+    }*/
 
 
 }

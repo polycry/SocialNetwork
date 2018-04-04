@@ -19,4 +19,5 @@
     <string name="title_activity_feed_new">FeedActivityNew</string>
     <string name="action_search">Suche</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="button_follow">Folgen</string>
 </resources>

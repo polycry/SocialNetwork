@@ -11,8 +11,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
-public class FeedActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,View.OnClickListener {
+public class FeedActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, View.OnClickListener {
 
     private SectionsPageAdapter spa;
     private ListView lv;
@@ -39,6 +40,9 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
         //pa = new PostAdapter(this, posts);
         //lv.setAdapter(pa);
 
+        sv = findViewById(R.id.search_user);
+        sv.setOnQueryTextListener(this);
+
         addPost = findViewById(R.id.addPost);
         addPost.setOnClickListener(this);
 
@@ -53,6 +57,24 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.addOnTabSelectedListener(
+                new TabLayout.ViewPagerOnTabSelectedListener(viewPager) {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        super.onTabSelected(tab);
+                        switch (tab.getPosition()) {
+                            case 0:
+                                followFeed.reloadListView(logged_in_user);
+                                break;
+                            case 1:
+                                globalFeed.reloadListView("");
+                                break;
+                            case 2:
+                                userFeed.reloadListView(sv.getQuery().toString());
+                                break;
+                        }
+                    }
+                });
         /*viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(onTabSelectedListener(viewPager));*/
 
@@ -65,15 +87,12 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     private void setupViewPager(ViewPager viewPager) {
         followFeed = new FeedFragment();
         followFeed.setTag(FeedFragment.FOLLOW_FEED);
-        followFeed.setUser(logged_in_user);
 
         globalFeed = new FeedFragment();
         globalFeed.setTag(FeedFragment.GLOBAL_FEED);
-        globalFeed.setUser(logged_in_user);
 
         userFeed = new FeedFragment();
         userFeed.setTag(FeedFragment.USER_FEED);
-        userFeed.setUser(logged_in_user);
 
         spa.addFragment(followFeed, "Follower");
         spa.addFragment(globalFeed, "Global");
@@ -84,13 +103,19 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        return false;
+        if (tabLayout.getSelectedTabPosition() == 2) {
+            userFeed.reloadListView(query);
+        } else {
+            tabLayout.getTabAt(2).select();
+        }
+        return true;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
         return false;
     }
+
     @Override
     public void onClick(View view) {
         if (view == addPost) {
