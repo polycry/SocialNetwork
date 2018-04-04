@@ -1,15 +1,18 @@
 package com.feg.socialnetwork;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.ListView;
 
-public class FeedActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class FeedActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,View.OnClickListener {
 
     private SectionsPageAdapter spa;
     private ListView lv;
@@ -25,10 +28,19 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
 
     private TabLayout tabLayout;
 
+    private FloatingActionButton addPost;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
+        //lv = findViewById(R.id.list_feed);
+        //ArrayList<Post> posts = new ArrayList<Post>();
+        //pa = new PostAdapter(this, posts);
+        //lv.setAdapter(pa);
+
+        addPost = findViewById(R.id.addPost);
+        addPost.setOnClickListener(this);
 
         Bundle b = getIntent().getExtras();
         if (b != null) {
@@ -111,6 +123,14 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onQueryTextChange(String newText) {
         return false;
+    }
+    @Override
+    public void onClick(View view) {
+        if (view == addPost) {
+            Intent i = new Intent(getBaseContext(), AddPostActivity.class);
+            i.putExtra("username",logged_in_user);
+            startActivity(i);
+        }
     }
 }
 
