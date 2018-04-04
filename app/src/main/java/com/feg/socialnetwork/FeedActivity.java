@@ -1,28 +1,13 @@
 package com.feg.socialnetwork;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.ViewParent;
 import android.widget.ListView;
-import android.widget.TabHost;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 
 public class FeedActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -70,9 +55,11 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_feed_search, menu);
 
-        sv = (SearchView) menu.findItem(R.id.item_search).getActionView();
+        sv = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        sv.setIconifiedByDefault(false);
+        sv.setQueryHint("Suche nach Posts von Benutzern");
         sv.setOnQueryTextListener(this);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     /*private TabLayout.OnTabSelectedListener onTabSelectedListener(final ViewPager viewPager) {
