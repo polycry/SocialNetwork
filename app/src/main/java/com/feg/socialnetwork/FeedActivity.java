@@ -62,39 +62,6 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
         nr.execute();*/
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_feed_search, menu);
-
-        sv = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        sv.setIconifiedByDefault(false);
-        sv.setQueryHint("Suche nach Posts von Benutzern");
-        sv.setOnQueryTextListener(this);
-        return true;
-    }
-
-    /*private TabLayout.OnTabSelectedListener onTabSelectedListener(final ViewPager viewPager) {
-
-        return new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                Fragment f = spa.getItem(tab.getPosition());
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        };
-    }*/
-
     private void setupViewPager(ViewPager viewPager) {
         followFeed = new FeedFragment();
         followFeed.setTag(FeedFragment.FOLLOW_FEED);
@@ -133,21 +100,3 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
         }
     }
 }
-
-/*
-    <ListView
-            android:id="@+id/list_feed"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:scrollbars="none"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.09" />*/
