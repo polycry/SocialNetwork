@@ -71,4 +71,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         app:srcCompat="@mipmap/snlogo" />
+
+    <CheckBox
+        android:id="@+id/stayloggedin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/register"
+        android:layout_alignStart="@+id/register"
+        android:layout_below="@+id/register"
+        android:layout_marginTop="14dp"
+        android:text="Angemeldet bleiben" />
 </RelativeLayout>
