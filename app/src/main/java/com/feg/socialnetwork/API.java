@@ -13,6 +13,8 @@ public class API {
     public static final String URL_INSERTPOST = ROOT_URL + "post";
     public static final String URL_GETPOSTS = ROOT_URL + "getpost";
     public static final String URL_GETPOSTS_ONLY_USER = ROOT_URL + "getpost&userposts=true";
+    public static final String URL_FOLLOW = ROOT_URL + "follow";
+    public static final String URL_IS_FOLLOWING = ROOT_URL + "following";
 
     public static final int CODE_GET_REQUEST = 1024;
     public static final int CODE_POST_REQUEST = 1025;

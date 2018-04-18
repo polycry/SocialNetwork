@@ -23,7 +23,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
 
     private FeedFragment followFeed;
     private FeedFragment globalFeed;
-    private FeedFragment userFeed;
+    private UserFeedFragment userFeed;
 
     private ViewPager viewPager;
 
@@ -70,7 +70,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
                                 globalFeed.reloadListView("");
                                 break;
                             case 2:
-                                userFeed.reloadListView(sv.getQuery().toString());
+                                userFeed.reloadAll(sv.getQuery().toString(), logged_in_user);
                                 break;
                         }
                     }
@@ -91,7 +91,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
         globalFeed = new FeedFragment();
         globalFeed.setTag(FeedFragment.GLOBAL_FEED);
 
-        userFeed = new FeedFragment();
+        userFeed = new UserFeedFragment();
         userFeed.setTag(FeedFragment.USER_FEED);
 
         spa.addFragment(followFeed, "Follower");
@@ -104,7 +104,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onQueryTextSubmit(String query) {
         if (tabLayout.getSelectedTabPosition() == 2) {
-            userFeed.reloadListView(query);
+            userFeed.reloadAll(query, logged_in_user);
         } else {
             tabLayout.getTabAt(2).select();
         }
@@ -120,7 +120,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     public void onClick(View view) {
         if (view == addPost) {
             Intent i = new Intent(getBaseContext(), AddPostActivity.class);
-            i.putExtra("username",logged_in_user);
+            i.putExtra("username", logged_in_user);
             startActivity(i);
         }
     }

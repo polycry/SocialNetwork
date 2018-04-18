@@ -27,11 +27,11 @@ public class FeedFragment extends Fragment {
     public static final int GLOBAL_FEED = 2;
     public static final int USER_FEED = 3;
 
-    private int tag = 0;
+    protected int tag = 0;
 
-    private ListView lv;
-    private PostAdapter pa;
-    private Activity a;
+    protected ListView lv;
+    protected PostAdapter pa;
+    protected Activity a;
 
     @Nullable
     @Override
