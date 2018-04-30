@@ -93,6 +93,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
 
         userFeed = new UserFeedFragment();
         userFeed.setTag(FeedFragment.USER_FEED);
+        userFeed.setLogged_in(logged_in_user);
 
         spa.addFragment(followFeed, "Follower");
         spa.addFragment(globalFeed, "Global");

@@ -54,6 +54,8 @@ public class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
                 ((AddPostActivity) activity).addpost(object);
             } else if (url.equals(API.URL_FOLLOW)) {
                 ((UserFeedFragment) feed_fragment).follow(object);
+            } else if (url.equals(API.URL_IS_FOLLOWING)) {
+                ((UserFeedFragment) feed_fragment).reloadButton(object);
             }
         } catch (JSONException e) {
             e.printStackTrace();
