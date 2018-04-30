@@ -29,7 +29,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:iconifiedByDefault="false"
-                android:queryHint="Finde Posts eines Benutzers" />
+                android:queryHint="Finde Posts eines Benutzers" >
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/share" />
+            </android.support.v7.widget.SearchView>
 
         </android.support.v7.widget.Toolbar>
 
@@ -37,6 +44,13 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button" />
 
     </android.support.design.widget.AppBarLayout>
 

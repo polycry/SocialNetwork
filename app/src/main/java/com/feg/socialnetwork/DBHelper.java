@@ -71,4 +71,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return credentials;
     }
+
+    public void delete_credentials(){
+        database.delete("benutzer","id=1",null);
+
+    }
+
 }

@@ -10,6 +10,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     private TabLayout tabLayout;
 
     private FloatingActionButton addPost;
+    private Button logout_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,9 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
 
         sv = findViewById(R.id.search_user);
         sv.setOnQueryTextListener(this);
+
+        logout_btn=findViewById(R.id.btn_logout);
+        logout_btn.setOnClickListener(this);
 
         addPost = findViewById(R.id.addPost);
         addPost.setOnClickListener(this);
@@ -124,5 +129,18 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
             i.putExtra("username", logged_in_user);
             startActivity(i);
         }
+
+        if (view == logout_btn){
+            log_out();
+        }
+    }
+
+    public void log_out(){
+        logged_in_user=null;
+        Intent i = new Intent(getBaseContext(), MainActivity.class);
+        DBHelper db = new DBHelper(this);
+        db.delete_credentials();
+        startActivity(i);
+        this.finish();
     }
 }
