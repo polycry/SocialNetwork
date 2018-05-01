@@ -25,7 +25,6 @@ public class UserFeedFragment extends FeedFragment implements View.OnClickListen
 
     private Button b;
     private String query;
-    private String logged_in = "";
 
     @Nullable
     @Override
@@ -40,10 +39,6 @@ public class UserFeedFragment extends FeedFragment implements View.OnClickListen
         pa = new PostAdapter(a, posts);
         lv.setAdapter(pa);
         return view;
-    }
-
-    public void setLogged_in(String logged_in) {
-        this.logged_in = logged_in;
     }
 
     @Override
@@ -82,16 +77,16 @@ public class UserFeedFragment extends FeedFragment implements View.OnClickListen
         }
     }
 
-    public void reloadAll(String query, String user) {
+    public void reloadAll(String query) {
         this.query = query;
         if (query != "") {
             HashMap<String, String> params;
             PerformNetworkRequest nr = null;
-            // TODO: GET THIS SHIT TO WORK AMK DCDJASKLJFDKLSAJFD KLÖSAJF ÖDKLASJFKLÖ DASJKLÖ FDASJKLÖFÄDASKÄÖ!PIO"U§$"!$I KEÄÖQWL JKFÖQWELJ
-            if (query != user) {
+            // TODO: GET THIS SHIT TO WORK AMK
+            if (!query.equals(FeedActivity.logged_in_user)) {
                 showButton();
                 params = new HashMap<>();
-                params.put("username", user);
+                params.put("username", FeedActivity.logged_in_user);
                 params.put("target", query);
                 nr = new PerformNetworkRequest(API.URL_IS_FOLLOWING, params, API.CODE_POST_REQUEST, this);
                 nr.execute();
@@ -127,9 +122,11 @@ public class UserFeedFragment extends FeedFragment implements View.OnClickListen
                 b.setEnabled(true);
                 if (jo.getBoolean("following")) {
                     Log.i("following", "true");
+                    b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_unfollow, 0, 0, 0);
                     b.setText("Nicht mehr folgen");
                 } else {
                     Log.i("following", "false");
+                    b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_follow, 0, 0, 0);
                     b.setText("Folgen");
                 }
             } catch (JSONException e) {
@@ -152,9 +149,11 @@ public class UserFeedFragment extends FeedFragment implements View.OnClickListen
             try {
                 if (jo.getBoolean("followed")) {
                     Toast.makeText(getActivity().getApplicationContext(), "Sie folgen nun \"" + query + "\"", Toast.LENGTH_LONG).show();
+                    b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_unfollow, 0, 0, 0);
                     b.setText("Nicht mehr folgen");
                 } else {
                     Toast.makeText(getActivity().getApplicationContext(), "Sie folgen nun \"" + query + "\" nicht mehr", Toast.LENGTH_LONG).show();
+                    b.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_follow, 0, 0, 0);
                     b.setText("Folgen");
                 }
             } catch (JSONException e) {
@@ -170,7 +169,7 @@ public class UserFeedFragment extends FeedFragment implements View.OnClickListen
         if (v == b) {
             HashMap<String, String> params = new HashMap<>();
             params.put("target", query);
-            params.put("username", logged_in);
+            params.put("username", FeedActivity.logged_in_user);
             PerformNetworkRequest nr = new PerformNetworkRequest(API.URL_FOLLOW, params, API.CODE_POST_REQUEST, this);
             nr.execute();
         }

@@ -83,19 +83,11 @@ public class FeedFragment extends Fragment {
             nr = new PerformNetworkRequest(API.URL_GETPOSTS, params, API.CODE_POST_REQUEST, this);
         } else if (tag == GLOBAL_FEED) {
             nr = new PerformNetworkRequest(API.URL_GETPOSTS, params, API.CODE_POST_REQUEST, this);
-        } else if (tag == USER_FEED) {
+        } /*else if (tag == USER_FEED) {
             nr = new PerformNetworkRequest(API.URL_GETPOSTS_ONLY_USER, params, API.CODE_POST_REQUEST, this);
-        }
+        }*/
         nr.execute();
     }
-
-    /*@Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-
-        }
-    }*/
 
 
 }

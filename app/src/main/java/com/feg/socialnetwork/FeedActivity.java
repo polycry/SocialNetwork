@@ -11,16 +11,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
 public class FeedActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, View.OnClickListener {
 
     private SectionsPageAdapter spa;
-    private ListView lv;
     private SearchView sv;
 
-    private String logged_in_user = "";
+    public static String logged_in_user = "";
 
     private FeedFragment followFeed;
     private FeedFragment globalFeed;
@@ -31,7 +31,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     private TabLayout tabLayout;
 
     private FloatingActionButton addPost;
-    private Button logout_btn;
+    private ImageButton logout_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,8 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
         sv = findViewById(R.id.search_user);
         sv.setOnQueryTextListener(this);
 
-        logout_btn=findViewById(R.id.btn_logout);
+        logout_btn = findViewById(R.id.logout);
+        logout_btn.setImageResource(R.drawable.ic_logout);
         logout_btn.setOnClickListener(this);
 
         addPost = findViewById(R.id.addPost);
@@ -75,18 +76,12 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
                                 globalFeed.reloadListView("");
                                 break;
                             case 2:
-                                userFeed.reloadAll(sv.getQuery().toString(), logged_in_user);
+                                userFeed.reloadAll(sv.getQuery().toString());
                                 break;
                         }
                     }
                 });
-        /*viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(onTabSelectedListener(viewPager));*/
-
-        /*HashMap<String, String> params = new HashMap<>();
-        params.put("username", "poly");
-        PerformNetworkRequest nr = new PerformNetworkRequest(API.URL_GETPOSTS_ONLY_USER, params, API.CODE_POST_REQUEST, this);
-        nr.execute();*/
+        sv.setQuery(logged_in_user, false);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -98,11 +93,10 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
 
         userFeed = new UserFeedFragment();
         userFeed.setTag(FeedFragment.USER_FEED);
-        userFeed.setLogged_in(logged_in_user);
 
-        spa.addFragment(followFeed, "Follower");
+        spa.addFragment(followFeed, "Folge ich");
         spa.addFragment(globalFeed, "Global");
-        spa.addFragment(userFeed, "User");
+        spa.addFragment(userFeed, "Benutzer");
         viewPager.setAdapter(spa);
     }
 
@@ -110,7 +104,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onQueryTextSubmit(String query) {
         if (tabLayout.getSelectedTabPosition() == 2) {
-            userFeed.reloadAll(query, logged_in_user);
+            userFeed.reloadAll(query);
         } else {
             tabLayout.getTabAt(2).select();
         }
@@ -136,7 +130,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     public void log_out(){
-        logged_in_user=null;
+        logged_in_user = null;
         Intent i = new Intent(getBaseContext(), MainActivity.class);
         DBHelper db = new DBHelper(this);
         db.delete_credentials();

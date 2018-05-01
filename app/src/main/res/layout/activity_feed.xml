@@ -20,23 +20,36 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-            <android.support.v7.widget.SearchView
-                android:id="@+id/search_user"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:iconifiedByDefault="false"
-                android:queryHint="Finde Posts eines Benutzers" >
+                android:layout_height="wrap_content">
+                
+                <android.support.v7.widget.SearchView
+                    android:id="@+id/search_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_marginRight="20dp"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="Finde Posts eines Benutzers">
+                </android.support.v7.widget.SearchView>
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/share" />
-            </android.support.v7.widget.SearchView>
+                    android:id="@+id/logout"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_weight="0"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="20dp"
+                    android:background="@null"
+                    android:clickable="true" />
+                
+            </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
 
@@ -44,13 +57,6 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -62,11 +68,11 @@
         android:layout_marginRight="10dp"
         android:clickable="true"
         app:backgroundTint="@android:color/white"
+        app:elevation="15dp"
         app:layout_anchor="@+id/container"
         app:layout_anchorGravity="right|bottom"
         app:srcCompat="@drawable/addbutton"
-        tools:layout_editor_absoluteY="490dp"
-        app:elevation="15dp"/>
+        tools:layout_editor_absoluteY="490dp" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/container"
