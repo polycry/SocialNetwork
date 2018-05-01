@@ -59,7 +59,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="59dp"
         android:background="@color/colorPrimaryDark"
-        android:text="Register"
+        android:text="Registrieren"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="360dp" />
 
